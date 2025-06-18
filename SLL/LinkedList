@@ -57,12 +57,13 @@ namespace LinkedList
             if (Head == null)
             {
                 Head = new Node<T>(val);
+                Count++;
                 return;
             }
-            //Console.WriteLine("TTT");
             Node<T> newNode = new Node<T>(val);
             newNode.Next = Head;
             Head = newNode;
+            Count++;
 
         }
         //pop_front
@@ -70,6 +71,7 @@ namespace LinkedList
         {
             if (Head == null) return;
             Head = Head.Next;
+            Count--;
         }
         //pop_back
         public void RemoveLast()
@@ -80,6 +82,7 @@ namespace LinkedList
             {
                 current = current.Next;
             }
+            Count--;
             current.Next = null;
         }
         public void Display()
@@ -108,17 +111,18 @@ namespace LinkedList
                 return;
             }
             Node<T> current = Head;
-            Console.WriteLine(current.Value);
             while (current.Next != null)
             {
 
                 if (current.Next.Equals(node))
                 {
                     current.Next = current.Next.Next;
+                    Count--;
                     return;
                 }
                 current = current.Next;
             }
+            Count--;
 
         }
         //insert 
@@ -127,8 +131,6 @@ namespace LinkedList
             Node<T> tmp = new Node<T>(val);
             if (node == null) AddFirst(tmp.Value);
             Node<T> current = Head;
-
-            Console.WriteLine(current);
             while (current.Next != null)
             {
 
@@ -136,12 +138,14 @@ namespace LinkedList
                 {
                     tmp.Next = current.Next;
                     current.Next = tmp;
+                    Count++;
                     return;
                 }
                 current = current.Next;
             }
             if (current.Equals(node))
                 AddLast(tmp.Value);
+            Count++;
 
         }
         public void AddBefore(Node<T> node, T val)
@@ -154,20 +158,20 @@ namespace LinkedList
             }
             Node<T> current = Head;
 
-            Console.WriteLine(current);
             while (current.Next != null)
             {
-
                 if (current.Next.Equals(node))
                 {
                     tmp.Next = current.Next;
                     current.Next = tmp;
+                    Count++;
                     return;
                 }
                 current = current.Next;
             }
             if (current.Equals(node))
                 AddLast(tmp.Value);
+            Count++;
 
         }
         public Node<T> GetMidElement()
