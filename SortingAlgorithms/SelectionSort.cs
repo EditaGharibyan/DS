@@ -1,19 +1,22 @@
-namespace SelectionSort{
-
-public static void BubbleSort<T>(T[] arr) where T :IComparable
+public static void SelectionSort<T>(T[] arr) where T:IComparable
 {
     if (arr.Length == 0 || arr.Length == 1) return;
-    for (int i = 0; i < arr.Length; i++)
+    for(int i = 0; i < arr.Length; i++)
     {
-        for(int j = 0; j < arr.Length; j++)
+        int minInd = i;
+        for(int j = i+1; j < arr.Length; j++)
         {
-            if (j+1<arr.Length && arr[j].CompareTo( arr[j + 1])>0)
+            if (arr[minInd].CompareTo( arr[j])>0)
             {
-                T temp = arr[j + 1];
-                arr[j + 1] = arr[j];
-                arr[j] = temp;
+                minInd = j;
             }
         }
+        if (minInd != i)
+        {
+            T temp = arr[minInd];
+            arr[minInd] = arr[i];
+            arr[i] = temp;
+        }
+
     }
-}
 }
